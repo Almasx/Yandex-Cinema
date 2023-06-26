@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MovieCounter } from "~/components/MovieCounter";
+import type { IMovieCard } from "~/types/movie-card";
 
 export default async function Home({
   searchParams,
@@ -35,18 +36,11 @@ export default async function Home({
   );
 }
 
-export interface MovieCard {
-  title: string;
-  genre: string;
-  posterUrl: string;
-  id: string;
-}
-
 export const MovieCard = ({
   movie,
   warn,
 }: {
-  movie: MovieCard;
+  movie: IMovieCard;
   warn?: boolean;
 }) => {
   return (

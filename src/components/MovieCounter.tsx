@@ -5,8 +5,8 @@ import Cross from "public/icons/close.svg";
 import Minus from "public/icons/minus.svg";
 import Plus from "public/icons/plus.svg";
 import { useState } from "react";
-import { MovieCard } from "~/app/page";
 import { useCartStore } from "~/lib/hooks/useCartStore";
+import { IMovieCard } from "~/types/movie-card";
 import { MiniButton } from "./primitives/button";
 import { Modal } from "./primitives/modal";
 
@@ -14,7 +14,7 @@ export const MovieCounter = ({
   movie,
   warn,
 }: {
-  movie: MovieCard;
+  movie: IMovieCard;
   warn?: boolean;
 }) => {
   const { cart, addMovie, removeMovie, totalRemoveMovie } = useCartStore(

@@ -1,19 +1,19 @@
 import { create } from "zustand";
-import { MovieCard } from "~/app/page";
+import { IMovieCard } from "~/types/movie-card";
 
 interface CartState {
-  cart: { movie: MovieCard; quantity: number }[];
+  cart: { movie: IMovieCard; quantity: number }[];
   total: number;
-  addMovie: (movie: MovieCard) => void;
-  removeMovie: (movie: MovieCard, onTotalRemove?: () => void) => void;
-  totalRemoveMovie: (movie: MovieCard) => void;
+  addMovie: (movie: IMovieCard) => void;
+  removeMovie: (movie: IMovieCard, onTotalRemove?: () => void) => void;
+  totalRemoveMovie: (movie: IMovieCard) => void;
   resetCart: () => void;
 }
 
 export const useCartStore = create<CartState>((set) => ({
   cart: [],
   total: 0,
-  addMovie: (movie: MovieCard) =>
+  addMovie: (movie: IMovieCard) =>
     set((state) => {
       const movieInCart = state.cart.findIndex(
         (cartMovie) => cartMovie.movie.id === movie.id
@@ -37,7 +37,7 @@ export const useCartStore = create<CartState>((set) => ({
       };
     }),
 
-  removeMovie: (movie: MovieCard, onTotalRemove?: () => void) =>
+  removeMovie: (movie: IMovieCard, onTotalRemove?: () => void) =>
     set((state) => {
       const movieInCart = state.cart.findIndex(
         (cartMovie) => cartMovie.movie.id === movie.id
@@ -69,7 +69,7 @@ export const useCartStore = create<CartState>((set) => ({
       return state;
     }),
 
-  totalRemoveMovie: (movie: MovieCard) =>
+  totalRemoveMovie: (movie: IMovieCard) =>
     set((state) => {
       const movieInCart = state.cart.find(
         (cartMovie) => cartMovie.movie.id === movie.id
