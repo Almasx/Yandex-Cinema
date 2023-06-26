@@ -5,12 +5,12 @@ import { Cinema, Movie } from "~/lib/services/cinema";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { shallow } from "zustand/shallow";
+import { MovieCard } from "~/components/MovieCard";
 import { Select } from "~/components/primitives/select";
 import { TextField } from "~/components/primitives/text-field";
 import { useCartStore } from "~/lib/hooks/useCartStore";
 import useDebounce from "~/lib/hooks/useDebounce";
 import { useFilterStore } from "~/lib/hooks/useFilterStore";
-import { MovieCard } from "./page";
 
 type FilterProps = {
   cinemas: Cinema[];

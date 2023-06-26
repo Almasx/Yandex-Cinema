@@ -1,7 +1,7 @@
 "use client";
 
+import { MovieCard } from "~/components/MovieCard";
 import { useCartStore } from "~/lib/hooks/useCartStore";
-import { MovieCard } from "../page";
 
 export default function Cart() {
   const { cart, total } = useCartStore((state) => state);
