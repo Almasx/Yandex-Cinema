@@ -1,20 +1,16 @@
 "use client";
 
-import { useContext, useState } from "react";
-
 import clsx from "clsx";
 import Image from "next/image";
 import Arrow from "public/icons/arrow-gray.svg";
-import React from "react";
+import { useState } from "react";
 
 interface AccordionProps {
   header: string;
-  children: React.ReactNode;
+  text: string;
 }
 
-const AccordionShowContext = React.createContext<boolean>(false);
-
-export const Root = ({ header, children }: AccordionProps) => {
+export const Accordion = ({ header, text }: AccordionProps) => {
   const [show, setShow] = useState<boolean>(false);
 
   return (
@@ -30,26 +26,14 @@ export const Root = ({ header, children }: AccordionProps) => {
           className={clsx(show && "-scale-y-100", "duration-100")}
         />
       </div>
-      <AccordionShowContext.Provider value={show}>
-        {children}
-      </AccordionShowContext.Provider>
+      <p
+        className={clsx(
+          "leading-6 transition-all duration-300 overflow-hidden pt-2",
+          !show && "!h-0 opacity-0 !pt-0"
+        )}
+      >
+        {text}
+      </p>
     </div>
   );
 };
-
-const Paragraph = ({ text }: { text: string }) => {
-  const show = useContext(AccordionShowContext);
-
-  return (
-    <p
-      className={clsx(
-        "leading-6 transition-all duration-300 overflow-hidden pt-2",
-        !show && "!h-0 opacity-0 !pt-0"
-      )}
-    >
-      {text}
-    </p>
-  );
-};
-
-export const Accordion = { Root, Paragraph };

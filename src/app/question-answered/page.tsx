@@ -7,18 +7,16 @@ export default function QuestionAnswered() {
         Вопросы-ответы
       </h1>
       <div className="flex flex-col gap-4">
-        <Accordion.Root header="Что такое Билетопоиск?">
-          <Accordion.Paragraph text="Мы — крупнейший сервис о кино в рунете. На нем вы сможете посмотреть фильмы и сериалы, купить билеты в кино, узнать рейтинги популярных видео и интересные факты, поставить фильмам оценки, написать рецензии и дополнить описание фильмов." />
-        </Accordion.Root>
-        <Accordion.Root header="Какой компании принадлежит Билетопоиск?">
-          <Accordion.Paragraph text="Не знаю" />
-        </Accordion.Root>
-        <Accordion.Root header="Как купить билет на Билетопоиск?">
-          <Accordion.Paragraph text="Не знаю" />
-        </Accordion.Root>
-        <Accordion.Root header="Как оставить отзыв на Билетопоиск?">
-          <Accordion.Paragraph text="Не знаю" />
-        </Accordion.Root>
+        <Accordion
+          header="Что такое Билетопоиск?"
+          text="Мы — крупнейший сервис о кино в рунете. На нем вы сможете посмотреть фильмы и сериалы, купить билеты в кино, узнать рейтинги популярных видео и интересные факты, поставить фильмам оценки, написать рецензии и дополнить описание фильмов."
+        />
+        <Accordion
+          header="Какой компании принадлежит Билетопоиск?"
+          text="Не знаю"
+        />
+        <Accordion header="Как купить билет на Билетопоиск?" text="Не знаю" />
+        <Accordion header="Как оставить отзыв на Билетопоиск?" text="Не знаю" />
       </div>
     </main>
   );
