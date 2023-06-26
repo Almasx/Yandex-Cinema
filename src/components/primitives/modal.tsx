@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Cross from "public/icons/close.svg";
+import { createPortal } from "react-dom";
 import { Button } from "./button";
 
 interface IModalProps {
@@ -12,7 +13,7 @@ interface IModalProps {
 }
 
 const Root = ({ children, visible, setVisible }: IModalProps) => {
-  return (
+  return createPortal(
     <div
       className={clsx(
         "fixed inset-0 z-20 h-screen duration-150",
@@ -34,7 +35,8 @@ const Root = ({ children, visible, setVisible }: IModalProps) => {
           <Image src={Cross} alt="cross" width={16} height={16} />
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

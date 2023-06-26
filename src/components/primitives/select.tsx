@@ -1,33 +1,29 @@
 "use client";
 
+import { createContext, useContext } from "react";
+
 import clsx from "clsx";
 import Image from "next/image";
 import Arrow from "public/icons/arrow-gray.svg";
-import { cloneElement } from "react";
 import useDropdown from "~/lib/hooks/useDropDown";
+
+const SelectContext = createContext<((option: string | null) => void) | null>(
+  null
+);
 
 export const Root = ({
   label,
   placeholder,
-  options,
+  children,
   onDefault,
 }: {
   label: string;
   placeholder: string;
-  options: React.ReactElement<OptionProps>[];
+  children: React.ReactNode;
   onDefault?: (event?: any) => void;
 }) => {
   const { isOpen, selectedOption, ref, toggleDropdown, handleSelect } =
     useDropdown<HTMLLabelElement>();
-
-  const clonedOptions = options.map((option) =>
-    cloneElement(option, {
-      onClick: (event?: any) => {
-        option.props.onClick?.call(event);
-        handleSelect(option.props.label);
-      },
-    })
-  );
 
   return (
     <label
@@ -67,7 +63,9 @@ export const Root = ({
             >
               Не выбран
             </li>
-            {clonedOptions}
+            <SelectContext.Provider value={handleSelect}>
+              {children}
+            </SelectContext.Provider>
           </div>
         )}
       </ul>
@@ -81,8 +79,16 @@ interface OptionProps {
 }
 
 const Option = ({ label, onClick }: OptionProps) => {
+  const handleSelect = useContext(SelectContext);
   return (
-    <li className="flex p-3 " key={label} onClick={() => onClick()}>
+    <li
+      className="flex p-3 "
+      key={label}
+      onClick={() => {
+        onClick();
+        handleSelect?.(label);
+      }}
+    >
       {label}
     </li>
   );

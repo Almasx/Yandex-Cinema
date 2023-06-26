@@ -40,7 +40,9 @@ export const Filter = ({ cinemas, genres }: FilterProps) => {
         <Select.Root
           label="Жанр"
           placeholder="Выберите жанр"
-          options={genres.map((genre) => (
+          onDefault={() => setGenre(null)}
+        >
+          {genres.map((genre) => (
             <Select.Option
               label={genre}
               onClick={() => {
@@ -49,20 +51,20 @@ export const Filter = ({ cinemas, genres }: FilterProps) => {
               key={genre}
             />
           ))}
-          onDefault={() => setGenre(null)}
-        />
+        </Select.Root>
         <Select.Root
           label="Кинотеатр"
           placeholder="Выберите кинотеатр"
           onDefault={() => router.push(`/`)}
-          options={cinemas.map((cinema) => (
+        >
+          {cinemas.map((cinema) => (
             <Select.Option
               label={cinema.name}
               onClick={() => router.push(`/?cinemaId=${cinema.id}`)}
               key={cinema.id}
             />
           ))}
-        />
+        </Select.Root>
       </div>
     </aside>
   );

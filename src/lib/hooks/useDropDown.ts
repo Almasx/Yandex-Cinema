@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type DropdownHook<T> = {
   isOpen: boolean;
@@ -28,10 +28,10 @@ const useDropdown = <T extends HTMLElement>(): DropdownHook<T> => {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleSelect = (option: string | null) => {
+  const handleSelect = useCallback((option: string | null) => {
     setSelectedOption(option);
     setIsOpen(false);
-  };
+  }, []);
 
   return { isOpen, selectedOption, ref, toggleDropdown, handleSelect };
 };
