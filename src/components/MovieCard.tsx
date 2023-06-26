@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { genreTranslation } from "~/lib/constants";
 import { IMovieCard } from "~/types/movie-card";
 import { MovieCounter } from "./MovieCounter";
 
@@ -21,7 +22,9 @@ export const MovieCard = ({
         />
         <div className="relative flex flex-col gap-2 grow">
           <h6 className="text-xl font-semibold">{movie.title}</h6>
-          <p className="italic">{movie.genre}</p>
+          <p className="italic">
+            {genreTranslation[movie.genre as keyof typeof genreTranslation]}
+          </p>
         </div>
       </Link>
       <MovieCounter movie={movie} warn={warn} />

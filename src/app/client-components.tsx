@@ -8,6 +8,7 @@ import { shallow } from "zustand/shallow";
 import { MovieCard } from "~/components/MovieCard";
 import { Select } from "~/components/primitives/select";
 import { TextField } from "~/components/primitives/text-field";
+import { genreTranslation } from "~/lib/constants";
 import { useCartStore } from "~/lib/hooks/useCartStore";
 import useDebounce from "~/lib/hooks/useDebounce";
 import { useFilterStore } from "~/lib/hooks/useFilterStore";
@@ -42,15 +43,19 @@ export const Filter = ({ cinemas, genres }: FilterProps) => {
           placeholder="Выберите жанр"
           onDefault={() => setGenre(null)}
         >
-          {genres.map((genre) => (
-            <Select.Option
-              label={genre}
-              onClick={() => {
-                setGenre(genre);
-              }}
-              key={genre}
-            />
-          ))}
+          {genres.map((genre) => {
+            const genreTranslated =
+              genreTranslation[genre as keyof typeof genreTranslation];
+            return (
+              <Select.Option
+                label={genreTranslated}
+                onClick={() => {
+                  setGenre(genre);
+                }}
+                key={genre}
+              />
+            );
+          })}
         </Select.Root>
         <Select.Root
           label="Кинотеатр"

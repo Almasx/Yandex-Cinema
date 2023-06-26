@@ -3,6 +3,7 @@ import { fetchMovie, fetchMovieReviews } from "~/lib/services/cinema";
 import Image from "next/image";
 import { MovieCounter } from "~/components/MovieCounter";
 import Review from "~/components/Review";
+import { genreTranslation } from "~/lib/constants";
 
 export default async function Film({ params }: { params: { id: string } }) {
   const { data: movie, error: movieError } = await fetchMovie({
@@ -37,7 +38,7 @@ export default async function Film({ params }: { params: { id: string } }) {
             <div className="flex flex-col gap-4">
               <div className="flex gap-2">
                 <span className="font-semibold">Жанр: </span>
-                {movie.genre}
+                {genreTranslation[movie.genre as keyof typeof genreTranslation]}
               </div>
               <div className="flex gap-2">
                 <span className="font-semibold">Год выпуска: </span>

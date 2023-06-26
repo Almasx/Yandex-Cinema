@@ -47,7 +47,7 @@ export const Root = ({
       </div>
       <ul
         className={clsx(
-          "absolute top-full right-0 left-0 z-10 translate-y-1 overflow-clip ",
+          "absolute top-full right-0 left-0 z-10 translate-y-1 overflow-clip",
           "rounded-lg duration-150 bg-white p-2",
           isOpen ? "visible opacity-100" : "invisible opacity-0"
         )}

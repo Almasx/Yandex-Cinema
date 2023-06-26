@@ -26,7 +26,10 @@ const useDropdown = <T extends HTMLElement>(): DropdownHook<T> => {
     };
   }, []);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = useCallback(
+    () => setIsOpen((isOpen) => !isOpen),
+    [setIsOpen]
+  );
 
   const handleSelect = useCallback((option: string | null) => {
     setSelectedOption(option);
